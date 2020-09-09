@@ -16,7 +16,7 @@ class Block
 	
 public:
 	// public functions
-	Block();
+	Block(float width, float height, float pos_x, float pos_y);
 	~Block();
 
 	void update();

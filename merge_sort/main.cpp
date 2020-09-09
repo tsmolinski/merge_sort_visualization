@@ -1,4 +1,5 @@
 #include "Visualization.h"
+#include <vector>
 
 using namespace std;
 
@@ -79,31 +80,35 @@ int main()
 	srand((time(0)));
 
 	Visualization vis;
+	//vector<Block*> blocks;
+	//Block blocks(20.f, 100.f, 50.f, 150.f);
 
-	//int array[10];
+	int array[10];
 
-	while (vis.running())
+	//for (int i = 0; i < )
+
+	//while (vis.running())
+	//{
+	//	vis.update();
+	//	vis.render();
+	//}
+
+	cout << "Przed: ";
+	for (int i = 0; i < 10; i++)
 	{
-		vis.update();
-		vis.render();
+		int num = (rand() % 50) + 1;
+
+		array[i] = num;
+		cout << array[i] << ", ";
 	}
 
-	//cout << "Przed: ";
-	//for (int i = 0; i < 10; i++)
-	//{
-	//	int num = (rand() % 50) + 1;
+	sort(array, 0, 9);
+	cout << "\n" << "Po: ";
 
-	//	array[i] = num;
-	//	cout << array[i] << ", ";
-	//}
-
-	//sort(array, 0, 9);
-	//cout << "\n" << "Po: ";
-
-	//for (int k = 0; k < 10; k++)
-	//{
-	//	cout << array[k] << ", ";
-	//}
+	for (int k = 0; k < 10; k++)
+	{
+		cout << array[k] << ", ";
+	}
 
 	return 0;
 }

@@ -12,6 +12,7 @@ void Visualization::initWindow()
 
 // public functions
 Visualization::Visualization()
+	:block(20.f, 400.f, 50.f, 150.f)
 {
 	initWindow();
 }
