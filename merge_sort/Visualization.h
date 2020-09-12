@@ -15,7 +15,8 @@ class Visualization
 
 	Event ev;
 
-	Block block;
+	Block* blocks[10];
+	bool canSpawn = true;
 
 	// private functions
 	void initWindow();
@@ -27,6 +28,7 @@ public:
 
 	const bool running() const;
 	void pollEvents();
+	void spawnBlocks();
 
 	void update();
 	void render();

@@ -12,7 +12,7 @@ void Visualization::initWindow()
 
 // public functions
 Visualization::Visualization()
-	:block(20.f, 400.f, 50.f, 150.f)
+	//:block(20.f, 400.f, 50.f, 150.f)
 {
 	initWindow();
 }
@@ -20,6 +20,11 @@ Visualization::Visualization()
 Visualization::~Visualization()
 {
 	delete window;
+
+	for (auto block : blocks)
+	{
+		delete block;
+	}
 }
 
 const bool Visualization::running() const
@@ -46,9 +51,22 @@ void Visualization::pollEvents()
 	}
 }
 
+void Visualization::spawnBlocks()
+{
+	if (canSpawn)
+	{
+		for (int i = 0; i < 10; i++)
+		{
+			blocks[i] = new Block(20.f, -1*((((rand() % 50) + 1) * 10.f)), i * 40.f + 80.f, 580.f);
+		}
+		canSpawn = false;
+	}
+}
+
 void Visualization::update()
 {
 	pollEvents();
+	spawnBlocks();
 }
 
 void Visualization::render()
@@ -56,7 +74,11 @@ void Visualization::render()
 	window->clear();
 
 	// render stuff
-	block.render(window);
+	//block.render(window);
+	for (auto& i : blocks)
+	{
+		i->render(window);
+	}
 
 	window->display();
 }
