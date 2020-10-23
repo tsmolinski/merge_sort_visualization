@@ -21,10 +21,10 @@ Visualization::~Visualization()
 {
 	delete window;
 
-	for (auto block : blocks)
-	{
-		delete block;
-	}
+	//for (auto block : blocks)
+	//{
+	//	delete block;
+	//}
 }
 
 const bool Visualization::running() const
@@ -57,16 +57,29 @@ void Visualization::spawnBlocks()
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			blocks[i] = new Block(20.f, -1*((((rand() % 50) + 1) * 10.f)), i * 40.f + 80.f, 580.f);
+			int num = (rand() % 50) + 1;
+			//blocks.push_back(new Block(num * 10.f));
+			blocks.push_back(Block(num * 10.f));
+			//blocks[i]->setPosition(i * 40.f + 80.f, 10.f);
+			blocks[i].setPosition(i * 40.f + 80.f, 10.f);
+			//cout << "blocks: " << (*blocks[i]) << "\n";
+			cout << "blocks: " << blocks[i] << "\n";
 		}
-		canSpawn = false;
+		canSpawn = false; 
+
 	}
+}
+
+void Visualization::startSorting()
+{
+	sort.sort(blocks);
 }
 
 void Visualization::update()
 {
 	pollEvents();
 	spawnBlocks();
+	startSorting();
 }
 
 void Visualization::render()
@@ -74,10 +87,13 @@ void Visualization::render()
 	window->clear();
 
 	// render stuff
-	//block.render(window);
+	//for (auto& i : blocks)
+	//{
+	//	i->render(window);
+	//}
 	for (auto& i : blocks)
 	{
-		i->render(window);
+		i.render(window);
 	}
 
 	window->display();
